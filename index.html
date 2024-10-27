@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ladder Movement</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #f0f8ff;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            height: 100vh;
+            justify-content: center;
+        }
+        
+        h2 {
+            font-size: 2em;
+            color: #444;
+            margin-bottom: 20px;
+        }
+        
+        .ladder {
+            font-size: 5em;
+            margin-bottom: 20px;
+        }
+        
+        .container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        button {
+            font-size: 1.2em;
+            padding: 10px 20px;
+            border-radius: 10px;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        button:hover {
+            background-color: #add8e6;
+        }
+
+        .show {
+            font-size: 1em;
+            background-color: #48c9b0;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 10px;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .show:hover {
+            background-color: #1abc9c;
+        }
+        
+        .showStep {
+            font-size: 1.5em;
+            color: #444;
+            margin-top: 10px;
+        }
+        @media screen and (max-width: 768px) {
+            h2 {
+                font-size: 1.8em;
+            }
+            .ladder {
+                font-size: 4em;
+            }
+            button {
+                font-size: 1em;
+                padding: 8px 16px;
+            }
+            .show {
+                padding: 8px 16px;
+            }
+            .showStep {
+                font-size: 1.2em;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            h2 {
+                font-size: 1.1em;
+            }
+            .ladder {
+                font-size: 3em;
+            }
+            .container {
+                flex-direction: column;
+                align-items: center;
+            }
+            button {
+                font-size: 0.9em;
+                padding: 6px 14px;
+            }
+            .show {
+                font-size: 0.9em;
+                padding: 6px 14px;
+            }
+            .showStep {
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h2>Move Up and Down the Ladder</h2>
+    <div class="ladder">🪜</div>
+    <div class="container">
+        <p><button onclick="moveUp()">👆</button> Up</p>
+        <p><button onclick="moveDown()">👇</button> Down</p>
+    </div>
+    <div onmousedown = "showStep()" class="show"> Show Current Position </div>
+    <p class="showStep"></p>
+
+    <script>
+        let ladder = {
+            step: 0,
+            moveUp() {
+                this.step++;
+                return this.step;
+            },
+            moveDown() {
+                this.step--;
+                return this.step;
+            },
+        };
+
+        function showStep() {
+            let show = document.querySelector('.showStep');
+            show.innerHTML = `Current Position: ${ladder.step}`;
+            if (ladder.step < 0) {
+                show.innerHTML = `You can't move lower than`
+            }
+        }
+
+        function moveUp() {
+            ladder.moveUp();
+            showStep();
+        }
+
+        function moveDown() {
+            ladder.moveDown();
+            showStep();
+        }
+    </script>
+</body>
+</html>

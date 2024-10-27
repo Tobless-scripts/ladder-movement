@@ -124,6 +124,8 @@
     <p class="showStep"></p>
 
     <script>
+        let show = document.querySelector('.showStep');
+
         let ladder = {
             step: 0,
             moveUp() {
@@ -131,17 +133,15 @@
                 return this.step;
             },
             moveDown() {
-                this.step--;
-                return this.step;
+                if (this.step > 0) {
+                    this.step--;
+                    return this.step;
+                }
             },
-        };
+        }
 
         function showStep() {
-            let show = document.querySelector('.showStep');
             show.innerHTML = `Current Position: ${ladder.step}`;
-            if (ladder.step < 0) {
-                show.innerHTML = `You can't move lower than`
-            }
         }
 
         function moveUp() {
